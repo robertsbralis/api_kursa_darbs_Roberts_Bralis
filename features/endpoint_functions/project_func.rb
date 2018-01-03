@@ -65,13 +65,16 @@ def create_login_request
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   # #Check if correct url is returned
   assert_equal(responce_hash['request']['url'],'https://www.apimation.com/login',"Incorrect URL returned! Responce: #{responce}")
+
+  @requests.push(responce_hash)
+
 end
 
 
 
 
 def create_project_request
-  request_name='set_active_project'
+  request_name='set_project'
   steps_payload='{"name":"'+request_name+'","description":"","request":{"method":"PUT","url":"https://www.apimation.com/projects/active/'+@project.project_id+'","type":"raw","body":"","binaryContent":{"value":"","filename":""},"urlEncParams":[{"name":"","value":""}],"formData":[{"type":"text","value":"","name":"","filename":""}],"headers":[{"name":"Content-Type","value":"application/json"}],"greps":[],"auth":{"type":"noAuth","data":{}}},"paste":false,"collection_id":"'+@collections.detect{|e| e['name']=='Projects'}['id']+'"}'
   responce=post('https://www.apimation.com/steps',
                 headers: {'Content-Type'=>'application/json'},
@@ -86,4 +89,24 @@ def create_project_request
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   #Check if correct url is returned
   assert_equal('https://www.apimation.com/projects/active/'+@project.project_id,responce_hash['request']['url'],"Incorrect URL returned! Responce: #{responce}")
+
+  @requests.push(responce_hash)
+end
+
+
+
+def create_test_case(name)
+  request_name=name
+  test_payload='{"name":"'+request_name+'","description":"this needs to be changed!!!","request":{"requests":[{"step_name":"'+@requests.detect{|e| e['name']=='login_case'}['name']+'","url":"'+@requests.detect{|e| e['name']=='login_case'}['request']['url']+'","body":"{\"login\":\"'+@test_user.email+'\",\"password\":\"'+@test_user.password+'\"}","formData":[{"type":"text","value":"","name":"","filename":""}],"urlEncParams":[{"name":"","value":""}],"binaryContent":{"value":"","filename":""},"type":"raw","headers":[{"name":"Content-Type","value":"application/json"}],"method":"POST","greps":[{"type":"json","expression":"","varname":""}],"asserts":[]},{"step_name":"'+@requests.detect{|e| e['name']=='set_project'}['name']+'","url":"https://www.apimation.com/projects/active/'+@project.project_id+'","body":"","formData":[{"type":"text","value":"","name":"","filename":""}],"urlEncParams":[{"name":"","value":""}],"binaryContent":{"value":"","filename":""},"type":"raw","headers":[{"name":"Content-Type","value":"application/json"}],"method":"PUT","greps":[{"type":"json","expression":"","varname":""}],"asserts":[]}],"vars":[{"name":"","value":""}],"assertWarn":1}}'
+
+   responce= post('https://www.apimation.com/cases',
+                  headers: {'Content-Type'=>'application/json'},
+                  cookies: @test_user.session_cookie,
+                  payload: test_payload)
+  #Check if 200 OK is received
+  assert_equal(200, responce.code,"Creating request failed! Responce: #{responce}")
+  responce_hash=JSON.parse(responce)
+  # Check if correct request name
+  assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
+  @test_cases.push(responce_hash)
 end

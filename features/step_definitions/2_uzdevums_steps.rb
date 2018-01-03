@@ -18,3 +18,6 @@ Then(/^I create 2 requests: login and set project active$/) do
   create_login_request
   create_project_request
 end
+And(/^I create test case with name: (.*)$/) do |name|
+  create_test_case(name)
+end

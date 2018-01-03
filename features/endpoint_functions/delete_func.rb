@@ -15,3 +15,12 @@ def delete_collection(collection)
   assert_equal(204, responce.code, "Deleting collection failed! Responce: #{responce}")
   @collections.pop
 end
+
+def delete_test_case(test)
+  responce=delete('https://www.apimation.com/cases/'+@test_cases.detect{|e| e['name']==test}['case_id'],
+                  headers:{'Content-Type'=>'application/json'},
+                  cookies: @test_user.session_cookie)
+  #Check if 204 No Content is received
+  assert_equal(204, responce.code, "Deleting collection failed! Responce: #{responce}")
+  @test_cases.pop
+end
