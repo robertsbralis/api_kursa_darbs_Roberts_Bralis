@@ -23,8 +23,8 @@ def create_environment(env_name)
 end
 
 def  create_global_variable(name,value)
-  @project.global_variables.push({'key'=>'$'+name,'value'=>value})
-  variable_payload={:global_vars =>@project.global_variables}.to_json
+  @project.global_var.push({'key'=>'$'+name,'value'=>value})
+  variable_payload={:global_vars =>@project.global_var}.to_json
   responce = put('https://www.apimation.com/environments/'+@project.environments.last['id'],
                  headers: {'Content-Type'=>'application/json'},
                  cookies: @test_user.session_cookie,
@@ -47,25 +47,11 @@ def create_collection(name)
   @collections.push(responce_hash)
 end
 
+
+
 def create_login_request
   request_name='login_case'
-  request_payload={:method=>'POST',
-                   :url=>'https://www.apimation.com/login',
-                   :type=>'raw',
-                   :body=>{:login=>@test_user.email,:password=>@test_user.password}.to_json,
-                   :binaryContent=>{:value=>'',:filename=>''}.to_json,
-                   :urlEncParams=>{:name=>'',:value=>''}.to_json,
-                   :formData=>{:type=>'text',:value=>'',:name=>'',:name=>'',:filename=>''}.to_json,
-                   :headers=>{:name=>'Content-Type',:value=> 'application/json'}.to_json,
-                   :greps=>[],
-                   :auth=>{:type=>'noAuth',:data=>{}}.to_json}
-
-  steps_payload={:collection_id=>@collections.last['id'],
-                 :description=>'',
-                 :name=>request_name,
-                 :paste=>false,
-                 :request=>request_payload}
-
+  steps_payload='{"name":"'+request_name+'","description":"","request":{"method":"POST","url":"https://www.apimation.com/login","type":"raw","body":"{\"login\":\"'+@test_user.email+'\",\"password\":\"'+@test_user.password+'\"}","binaryContent":{"value":"","filename":""},"urlEncParams":[{"name":"","value":""}],"formData":[{"type":"text","value":"","name":"","filename":""}],"headers":[{"name":"Content-Type","value":"application/json"}],"greps":[],"auth":{"type":"noAuth","data":{}}},"paste":false,"collection_id":"'+@collections.detect{|e| e['name']=='Login'}['id']+'"}'
   responce=post('https://www.apimation.com/steps',
                 headers: {'Content-Type'=>'application/json'},
                 cookies: @test_user.session_cookie,
@@ -74,31 +60,19 @@ def create_login_request
   assert_equal(200, responce.code,"Creating request failed! Responce: #{responce}")
   responce_hash=JSON.parse(responce)
   # Check if correct collection
-  assert_equal(@collections.last['id'],responce_hash['collection_id'],"Incorrect collection  returned! Responce: #{responce}")
-  # Check if correct request name
+  assert_equal(@collections.detect{|e| e['name']=='Login'}['id'],responce_hash['collection_id'],"Incorrect collection  returned! Responce: #{responce}")
+  # # Check if correct request name
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
-  #Check if correct url is returned
-  assert_equal(@collections.last['url'],'https://www.apimation.com/login',"Incorrect URL returned! Responce: #{responce}")
+  # #Check if correct url is returned
+  assert_equal(responce_hash['request']['url'],'https://www.apimation.com/login',"Incorrect URL returned! Responce: #{responce}")
 end
+
+
+
 
 def create_project_request
   request_name='set_active_project'
-  request_payload={:method=>'PUT',
-                   :url=>'https://www.apimation.com/projects/active/'+@project.project_id,
-                   :type=>'raw',
-                   :binaryContent=>{:value=>'',:filename=>''}.to_json,
-                   :urlEncParams=>{:name=>'',:value=>''}.to_json,
-                   :formData=>{:type=>'text',:value=>'',:name=>'',:name=>'',:filename=>''}.to_json,
-                   :headers=>{:name=>'Content-Type',:value=> 'application/json'}.to_json,
-                   :greps=>[],
-                   :auth=>{:type=>'noAuth',:data=>{}}.to_json}
-
-  steps_payload={:collection_id=>@collections.last['id'],
-                 :description=>'',
-                 :name=>request_name,
-                 :paste=>false,
-                 :request=>request_payload}
-
+  steps_payload='{"name":"'+request_name+'","description":"","request":{"method":"PUT","url":"https://www.apimation.com/projects/active/'+@project.project_id+'","type":"raw","body":"","binaryContent":{"value":"","filename":""},"urlEncParams":[{"name":"","value":""}],"formData":[{"type":"text","value":"","name":"","filename":""}],"headers":[{"name":"Content-Type","value":"application/json"}],"greps":[],"auth":{"type":"noAuth","data":{}}},"paste":false,"collection_id":"'+@collections.detect{|e| e['name']=='Projects'}['id']+'"}'
   responce=post('https://www.apimation.com/steps',
                 headers: {'Content-Type'=>'application/json'},
                 cookies: @test_user.session_cookie,
@@ -107,10 +81,9 @@ def create_project_request
   assert_equal(200, responce.code,"Creating request failed! Responce: #{responce}")
   responce_hash=JSON.parse(responce)
   # Check if correct collection
-  assert_equal(@collections.last['id'],responce_hash['collection_id'],"Incorrect collection  returned! Responce: #{responce}")
+  assert_equal(@collections.detect{|e| e['name']=='Projects'}['id'],responce_hash['collection_id'],"Incorrect collection  returned! Responce: #{responce}")
   # Check if correct request name
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   #Check if correct url is returned
-  assert_equal(@collections.last['url'],'https://www.apimation.com/login',"Incorrect URL returned! Responce: #{responce}")
-
+  assert_equal('https://www.apimation.com/projects/active/'+@project.project_id,responce_hash['request']['url'],"Incorrect URL returned! Responce: #{responce}")
 end

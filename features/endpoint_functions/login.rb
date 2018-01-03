@@ -2,7 +2,7 @@ require 'rest-client'
 require 'test-unit'
 
 def login_positive
-  login_payload = { :login => @test_user.email,:password => @test_user.password}.to_json
+  login_payload = {:login => @test_user.email,:password => @test_user.password}.to_json
   responce=post('https://www.apimation.com/login',
                 headers: {'Content-Type'=>'application/json'},
                 cookies: {},
