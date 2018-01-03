@@ -1,6 +1,11 @@
-def set_active_project
+def set_active_project(name)
+  responce = get('https://www.apimation.com/projects',
+                 headers:{},
+                 cookies: @test_user.session_cookie)
+  responce_hash = JSON.parse(responce)
+  @project=Project.new(responce_hash.detect{|e| e['name']==name}['id'])
 
-    responce = put('https://www.apimation.com/projects/active/'+@project.project_id,
+  responce = put('https://www.apimation.com/projects/active/'+@project.project_id,
                    headers: {'Content-Type'=>'application/json'},
                    cookies: @test_user.session_cookie,
                    payload: {})
@@ -109,4 +114,12 @@ def create_test_case(name)
   # Check if correct request name
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   @test_cases.push(responce_hash)
+end
+
+def get_projects
+  responce = get('https://www.apimation.com/projects',
+                 headers:{},
+                 cookies: @test_user.session_cookie)
+  responce_hash = JSON.parse(responce)
+  responce_hash
 end

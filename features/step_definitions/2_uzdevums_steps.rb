@@ -1,8 +1,8 @@
 When(/^I login in apimation as regular user$/) do
   login_positive
 end
-Then(/^I create a new environment called (.*) in project$/) do |env|
-  set_active_project
+Then(/^I create a new environment called (.*) in project (.*)$/) do |env,project|
+  set_active_project(project)
   create_environment(env)
 end
 Then(/^I add global variable - username and password and project id$/) do
