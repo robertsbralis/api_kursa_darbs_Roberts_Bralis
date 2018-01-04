@@ -1,0 +1,208 @@
+[
+  {
+    "uri": "features/2uzdevums.feature",
+    "id": "2.uzdevums---izveidot-environment,globālie-mainīgie,-kolekcijas,rekvesti.",
+    "keyword": "Feature",
+    "name": "2.uzdevums - izveidot environment,globālie mainīgie, kolekcijas,rekvesti.",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": "2.uzdevums---izveidot-environment,globālie-mainīgie,-kolekcijas,rekvesti.;2.uzdevums",
+        "keyword": "Scenario",
+        "name": "2.uzdevums",
+        "description": "",
+        "line": 3,
+        "type": "scenario",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/env.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33146
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "I login in apimation as regular user",
+            "line": 4,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2483299682
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create a new environment called PREPROD in project Rest API",
+            "line": 5,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1056499904
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I add global variable - username and password and project id",
+            "line": 6,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 889106376
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create 2 collections - Login and Projects",
+            "line": 7,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 768052430
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create 2 requests: login and set project active",
+            "line": 8,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 670767373
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/env.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 918434632
+            }
+          }
+        ]
+      },
+      {
+        "id": "2.uzdevums---izveidot-environment,globālie-mainīgie,-kolekcijas,rekvesti.;3.uzdevums",
+        "keyword": "Scenario",
+        "name": "3.uzdevums",
+        "description": "",
+        "line": 10,
+        "type": "scenario",
+        "before": [
+          {
+            "match": {
+              "location": "features/support/env.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 38788
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "I login in apimation as regular user",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 420643428
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create a new environment called PREPROD in project Rest API",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1042764747
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I add global variable - username and password and project id",
+            "line": 13,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 855898622
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create 2 collections - Login and Projects",
+            "line": 14,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 751375385
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I create 2 requests: login and set project active",
+            "line": 15,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 641459568
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I create test case with name: Set active project",
+            "line": 16,
+            "match": {
+              "location": "features/step_definitions/2_uzdevums_steps.rb:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 299573615
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/env.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1252157138
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
