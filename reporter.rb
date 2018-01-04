@@ -26,9 +26,13 @@ end
 win_ratio=((scenario_win/scenario_count).to_f).round(2)*100.to_f.round(2)
 lose_ratio=((scenario_lose/scenario_count).to_f).round(2)*100.to_f.round(2)
 
-build_name=ARGV[0]
+job_name=ARGV[0]
 build_number=ARGV[1]
-job_url=ARGV[2]
+
+
+job_url='http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/'+job_name+'/'+build_number+'/cucumber-html-reports/overview-features.html'
+
+puts job_url
 
 # thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
 # fields=[]
