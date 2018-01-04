@@ -30,7 +30,7 @@ job_name=ARGV[0]
 build_number=ARGV[1]
 
 
-job_url='jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/'+job_name+'/'+build_number+'/cucumber-html-reports/overview-features.html'
+job_url='http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/'+job_name+'/'+build_number+'/cucumber-html-reports/overview-features.html'
 
 puts job_url
 
