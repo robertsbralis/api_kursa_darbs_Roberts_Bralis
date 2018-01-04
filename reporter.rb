@@ -38,14 +38,14 @@ embed=[]
 fields.push({'name'=>'Build name','value'=>job_name.to_s})
 fields.push({'name'=>'Build number','value'=>build_number.to_s})
 fields.push({'name'=>'Link to report','value'=>job_url.to_s})
-fields.push({'name'=>'Passed tests'},'value'=>scenario_win.to_s)
-fields.push({'name'=>'Failed tests'},'value'=>scenario_lose.to_s)
-fields.push({'name'=>'Passed tests ratio'},'value'=>win_ratio.to_s+' %')
-fields.push({'name'=>'Failed tests ratio'},'value'=>lose_ratio.to_s+' %')
+fields.push({'name'=>'Passed tests','value'=>scenario_win.to_s})
+fields.push({'name'=>'Failed tests','value'=>scenario_lose.to_s})
+fields.push({'name'=>'Passed tests ratio','value'=>win_ratio.to_s+' %'})
+fields.push({'name'=>'Failed tests ratio','value'=>lose_ratio.to_s+' %'})
 embed.push({'title'=>'Kursa darbs',
-            'color'=>4441141,
-            'thumbnail'=>thumbnail,
-            'fields'=>fields})
+                'color'=>4441141,
+                'thumbnail'=>thumbnail,
+                'fields'=>fields})
 
 
 payload={'content'=>'Automatic message(Kursa darbs)','embeds'=>embed}.to_json
