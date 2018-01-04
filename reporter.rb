@@ -30,23 +30,23 @@ build_name=ARGV[0]
 build_number=ARGV[1]
 job_url=ARGV[2]
 
-thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
-fields=[]
-embed=[]
-fields.push({'name'=>'Build name','value'=>build_name.to_s})
-fields.push({'name'=>'Build number','value'=>build_number.to_s})
-fields.push({'name'=>'Link to report','value'=>job_url.to_s})
-fields.push({'name'=>'Passed tests ratio'},'value'=>win_ratio)
-fields.push({'name'=>'Failed tests ratio'},'value'=>lose_ratio)
-embed.push({'title'=>'Kursa darbs',
-            'color'=>4441141,
-            'thumbnail'=>thumbnail,
-            'fields'=>fields})
-
-
-payload={'content'=>'Automatic message','embeds'=>embed}.to_json
-
-post('https://discordapp.com/api/webhooks/393067525451022336/uz2WgUi_8-6oS9zy2Pu_3l_-CtQvabdSlgflF_ojyxTxWgxO_8Vdj0qBDMNixDj6wlT1',
-     headers: {'Content-Type'=>'application/json'},
-     cookies: {},
-     payload: payload)
+# thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
+# fields=[]
+# embed=[]
+# fields.push({'name'=>'Build name','value'=>build_name.to_s})
+# fields.push({'name'=>'Build number','value'=>build_number.to_s})
+# fields.push({'name'=>'Link to report','value'=>job_url.to_s})
+# fields.push({'name'=>'Passed tests ratio'},'value'=>win_ratio)
+# fields.push({'name'=>'Failed tests ratio'},'value'=>lose_ratio)
+# embed.push({'title'=>'Kursa darbs',
+#             'color'=>4441141,
+#             'thumbnail'=>thumbnail,
+#             'fields'=>fields})
+#
+#
+# payload={'content'=>'Automatic message','embeds'=>embed}.to_json
+#
+# post('https://discordapp.com/api/webhooks/393067525451022336/uz2WgUi_8-6oS9zy2Pu_3l_-CtQvabdSlgflF_ojyxTxWgxO_8Vdj0qBDMNixDj6wlT1',
+#      headers: {'Content-Type'=>'application/json'},
+#      cookies: {},
+#      payload: payload)
