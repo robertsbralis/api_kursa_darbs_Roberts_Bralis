@@ -29,28 +29,28 @@ lose_ratio=((scenario_lose/scenario_count).to_f).round(2)*100.to_f.round(2)
 job_name=ARGV[0]
 build_number=ARGV[1]
 
-
 job_url='http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/'+job_name+'/'+build_number+'/cucumber-html-reports/overview-features.html'
 
-puts job_url
 
-# thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
-# fields=[]
-# embed=[]
-# fields.push({'name'=>'Build name','value'=>build_name.to_s})
-# fields.push({'name'=>'Build number','value'=>build_number.to_s})
-# fields.push({'name'=>'Link to report','value'=>job_url.to_s})
-# fields.push({'name'=>'Passed tests ratio'},'value'=>win_ratio)
-# fields.push({'name'=>'Failed tests ratio'},'value'=>lose_ratio)
-# embed.push({'title'=>'Kursa darbs',
-#             'color'=>4441141,
-#             'thumbnail'=>thumbnail,
-#             'fields'=>fields})
-#
-#
-# payload={'content'=>'Automatic message','embeds'=>embed}.to_json
-#
-# post('https://discordapp.com/api/webhooks/393067525451022336/uz2WgUi_8-6oS9zy2Pu_3l_-CtQvabdSlgflF_ojyxTxWgxO_8Vdj0qBDMNixDj6wlT1',
-#      headers: {'Content-Type'=>'application/json'},
-#      cookies: {},
-#      payload: payload)
+thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
+fields=[]
+embed=[]
+fields.push({'name'=>'Build name','value'=>job_name.to_s})
+fields.push({'name'=>'Build number','value'=>build_number.to_s})
+fields.push({'name'=>'Link to report','value'=>job_url.to_s})
+fields.push({'name'=>'Passed tests'},'value'=>scenario_win.to_s)
+fields.push({'name'=>'Failed tests'},'value'=>scenario_lose.to_s)
+fields.push({'name'=>'Passed tests ratio'},'value'=>win_ratio.to_s+' %')
+fields.push({'name'=>'Failed tests ratio'},'value'=>lose_ratio.to_s+' %')
+embed.push({'title'=>'Kursa darbs',
+            'color'=>4441141,
+            'thumbnail'=>thumbnail,
+            'fields'=>fields})
+
+
+payload={'content'=>'Automatic message(Kursa darbs)','embeds'=>embed}.to_json
+
+post('https://discordapp.com/api/webhooks/393067525451022336/uz2WgUi_8-6oS9zy2Pu_3l_-CtQvabdSlgflF_ojyxTxWgxO_8Vdj0qBDMNixDj6wlT1',
+     headers: {'Content-Type'=>'application/json'},
+     cookies: {},
+     payload: payload)
