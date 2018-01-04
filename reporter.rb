@@ -23,13 +23,15 @@ report_hash.each do |i|
     end
 end
 end
-win_ratio=((scenario_win/scenario_count).to_f).round(2)*100.to_f.round(2)
-lose_ratio=((scenario_lose/scenario_count).to_f).round(2)*100.to_f.round(2)
+win_ratio=sprintf('%.2f', ((scenario_win/scenario_count).to_f)*100.to_f)
+lose_ratio=sprintf('%.2f',((scenario_lose/scenario_count).to_f)*100.to_f)
 
 job_name=ARGV[0]
 build_number=ARGV[1]
 
+
 job_url='http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/'+job_name+'/'+build_number+'/cucumber-html-reports/overview-features.html'
+
 
 
 thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
