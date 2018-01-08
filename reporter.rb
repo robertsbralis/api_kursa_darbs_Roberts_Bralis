@@ -34,7 +34,7 @@ job_url='http://jenkinsautomation.tdlbox.com/job/Kursa_darbs_Roberts_Bralis/job/
 
 
 
-thumbnail={'url'=>'https://vignette.wikia.nocookie.net/herebemonsters/images/3/3b/Cucumber-Sprite.png/revision/latest?cb=20140326235503'}
+thumbnail={'url'=>'https://www.testingexcellence.com/wp-content/uploads/2017/02/cucumber_pairwise_testing.png'}
 fields=[]
 embed=[]
 fields.push({'name'=>'Build name','value'=>job_name.to_s})
