@@ -4,6 +4,7 @@ def delete_environments(env_name)
                   cookies: @test_user.session_cookie)
   #Check if 204 No Content is received
   assert_equal(204, responce.code, "Deleting environment failed! Responce: #{responce}")
+  # Delete environment from environments array
   @project.environments.delete(@project.environments.detect{|e| e.name==env_name})
 end
 
@@ -13,6 +14,7 @@ def delete_collection(collection)
                   cookies: @test_user.session_cookie)
   #Check if 204 No Content is received
   assert_equal(204, responce.code, "Deleting collection failed! Responce: #{responce}")
+  # Delete collection from collections array
   @project.collections.pop
 end
 
@@ -22,5 +24,6 @@ def delete_test_case(test)
                   cookies: @test_user.session_cookie)
   #Check if 204 No Content is received
   assert_equal(204, responce.code, "Deleting collection failed! Responce: #{responce}")
+  # Delete test case from test case array
   @project.test_cases.pop
 end

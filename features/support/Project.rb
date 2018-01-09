@@ -7,7 +7,6 @@ class Project
   attr_accessor :requests
   attr_accessor :test_cases
 
-
   def initialize(name,project_id)
     @name=name
     @project_id=project_id
@@ -34,5 +33,4 @@ class Project
   def set_case(hash)
     @test_cases=@test_cases.push(Test_Case.new(hash))
   end
-
 end

@@ -4,17 +4,25 @@ end
 Then(/^I create a new environment called (.*) in project (.*)$/) do |env,project|
   set_active_project(project)
   create_environment(env)
+  check_environment(env)
 end
-Then(/^I add global variable - username and password and project id$/) do
-    create_global_variable('user',@test_user.email)
-    create_global_variable('password',@test_user.password)
-    create_global_variable('project_id',@project.project_id)
+Then(/^I add global variable - (.*)$/) do |key|
+  case key
+    when 'username' then create_global_variable('user',@test_user.email)
+    when 'password' then create_global_variable('password',@test_user.password)
+    when 'project_id' then create_global_variable('project_id',@project.project_id)
+    else raise 'Please specify correct global variables!'
+  end
 end
-Then(/^I create 2 collections - (.*) and (.*)/) do |col1,col2|
-  create_collection(col1)
-  create_collection(col2)
+
+Then(/^I create collection - (.*)/) do |col|
+  create_collection(col)
+  check_collection(col)
 end
-Then(/^I create 2 requests: login and set project active$/) do
-  create_login_request
-  create_project_request
+Then(/^I create request: (.*)$/) do |request|
+  case request
+    when 'login' then create_login_request
+    when 'set project active' then create_project_request
+    else raise 'Please specify correct request!'
+  end
 end

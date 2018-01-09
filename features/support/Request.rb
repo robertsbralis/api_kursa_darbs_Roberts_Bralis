@@ -5,8 +5,6 @@ class Request
   attr_accessor :url
   attr_accessor :method
 
-
-
   def initialize(hash)
     @name=hash['name']
     @collection_id=hash['collection_id']
@@ -14,5 +12,4 @@ class Request
     @url=hash['request']['url']
     @method=hash['request']['method']
   end
-
 end

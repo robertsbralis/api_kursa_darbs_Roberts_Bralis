@@ -14,6 +14,7 @@ def create_login_request
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   # #Check if correct url is returned
   assert_equal(responce_hash['request']['url'],'https://www.apimation.com/login',"Incorrect URL returned! Responce: #{responce}")
+  # Add request to project requests array
   @project.set_request(responce_hash)
 end
 
@@ -36,5 +37,6 @@ def create_project_request
   assert_equal(request_name,responce_hash['name'],"Incorrect request name returned! Responce: #{responce}")
   #Check if correct url is returned
   assert_equal('https://www.apimation.com/projects/active/'+@project.project_id,responce_hash['request']['url'],"Incorrect URL returned! Responce: #{responce}")
+  # Add request to project requests array
   @project.set_request(responce_hash)
 end
